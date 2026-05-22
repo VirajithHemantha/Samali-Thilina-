@@ -17,30 +17,28 @@
   --font-script: "Great Vibes", cursive;
   --font-sans: "Inter", sans-serif;
 
-  /* Primary accent — drives all `sage` classes */
-  --color-sage: #9D7BB0;
-  /* Lavender */
+  /* Primary accent — drives all `sage` classes (Maroon) */
+  --color-sage: #8A1C2E;
 
-  /* Background — drives all `paper` classes */
-  --color-paper: #FDFBF7;
-  /* Vellum White */
+  /* Background — drives all `paper` classes (Pure White) */
+  --color-paper: #FFFFFF;
 
   /* Extended palette mapped to existing variable names */
-  --color-sand: #E5E0EA;
-  /* Mist */
-  --color-taupe: #8F9779;
-  /* Leaf Green */
-  --color-rust: #7D5B90;
-  /* Heather */
-  --color-umber: #4B2C82;
-  /* Plum */
-  --color-sienna: #6B4E71;
-  /* Orchid */
+  --color-sand: #F5ECEE;
+  /* Light Rose Gray / Mist */
+  --color-taupe: #C5A880;
+  /* Champagne Gold */
+  --color-rust: #A32B3D;
+  /* Rose Wine / Mid Maroon */
+  --color-umber: #5C111E;
+  /* Deep Burgundy / Dark Maroon */
+  --color-sienna: #420810;
+  /* Very Deep Burgundy / Shadow Maroon */
 }
 
 body {
   background-color: var(--color-paper);
-  color: #3D2B1F;
+  color: #221C1D;
   font-family: var(--font-sans);
 }
 
