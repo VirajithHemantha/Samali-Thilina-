@@ -618,6 +618,10 @@ export default function App() {
   const reduceEffects = prefersReducedMotion || isIOS;
 
   const handleEnterInvitation = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = false;
+      audioRef.current.play().catch(() => {});
+    }
     if (videoRef.current) {
       videoRef.current.pause();
     }
@@ -689,7 +693,19 @@ export default function App() {
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setIsMuted((m) => !m)}
+        onClick={() => {
+          setIsMuted((m) => {
+            const next = !m;
+            if (!next && audioRef.current) {
+              audioRef.current.muted = false;
+              const playPromise = audioRef.current.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => {});
+              }
+            }
+            return next;
+          });
+        }}
         className="fixed bottom-6 right-6 z-[500] w-12 h-12 rounded-full bg-sage text-white shadow-2xl flex items-center justify-center backdrop-blur-md border border-white/20"
       >
         {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="animate-pulse" />}
