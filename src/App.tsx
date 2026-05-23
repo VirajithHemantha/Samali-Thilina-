@@ -503,7 +503,7 @@ export default function App() {
 
   // Video states
   const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [videoTime, setVideoTime] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [videoProgress, setVideoProgress] = useState(0);
@@ -726,6 +726,7 @@ export default function App() {
                 className="w-full h-full object-cover opacity-90"
                 playsInline
                 autoPlay
+                preload="auto"
                 muted={isVideoMuted}
                 onPlay={() => setIsVideoPlaying(true)}
                 onPause={() => setIsVideoPlaying(false)}
