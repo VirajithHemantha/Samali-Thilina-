@@ -637,12 +637,43 @@ export default function App() {
       return;
     }
 
-    const playPromise = audio.play();
-    if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => {
-        // iOS/Safari may block playback until a user gesture; the button tap will retry.
-      });
-    }
+    const tryPlay = () => {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Browser may block autoplay; we handle it via the interaction listeners below
+        });
+      }
+    };
+
+    // Try playing immediately
+    tryPlay();
+
+    // Attach global listeners so ANY interaction plays the audio (bypassing the need for a specific button)
+    const handleInteraction = () => {
+      if (!audio.muted) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      }
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+      document.removeEventListener('scroll', handleInteraction);
+    };
+
+    document.addEventListener('click', handleInteraction, { once: true });
+    document.addEventListener('touchstart', handleInteraction, { once: true });
+    document.addEventListener('keydown', handleInteraction, { once: true });
+    document.addEventListener('scroll', handleInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+      document.removeEventListener('scroll', handleInteraction);
+    };
   }, [isMuted]);
 
   return (
