@@ -1047,7 +1047,7 @@ export default function App() {
                         Loving Son of
                       </p>
                       <p className="serif text-[10px] sm:text-[11px] md:text-[13px] uppercase tracking-[0.3em] text-umber font-bold md:font-normal leading-relaxed">
-                        MR. & MRS. PRIYARATHANA
+                        MR. & MRS. PIYARATHANA
                       </p>
                     </div>
 
